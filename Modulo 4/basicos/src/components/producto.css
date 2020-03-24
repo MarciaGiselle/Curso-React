@@ -1,0 +1,46 @@
+body{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.producto{
+    border: 3px;
+    border-radius: 1em;
+    width: 18em;
+    height: 18em;
+    padding: 0.5em;
+    background-color: linen;
+    margin: 0 1em 1em 0;
+    display: inline-grid;
+    box-shadow: 10px 10px 18px -10px rgba(0,0,0,0.75);
+
+}
+
+.producto > h2 > a{
+    color: indigo;
+}
+.producto > h3{
+    text-align: right;
+    position: relative;
+}
+
+.imagen{
+    height: 100px;
+    background-color: darkgrey;
+    border-radius: 1em 1em 0 0;
+}
+
+.btn{
+    text-transform: uppercase;
+    width: inherit;
+    padding: 1em;
+    border-radius: 1em;
+    color: white;
+}
+
+.comprar{
+    background-color: green;
+}
+
+.eliminar{
+    background-color: red;
+}
