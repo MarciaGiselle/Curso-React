@@ -2,8 +2,8 @@ import React, { Fragment, useState } from "react";
 import { Form, Row, Button } from "react-bootstrap";
 import uuid from "uuid/v4";
 
-const Formulario = () => {
-  const [cita, setState] = useState({
+const Formulario = ({citas, setCitas}) => {
+  const [cita, actualizarCita] = useState({
     mascota: "",
     padre: "",
     fecha: "",
@@ -14,8 +14,9 @@ const Formulario = () => {
   const [error, setError] = useState(false);
 
   //Funcion que se ejecuta cada vez que el usuario escribe en el input
+  //y actualiza los valores de los campos de cita
   const handleChangeState = e => {
-    setState({
+    actualizarCita({
       ...cita,
       [e.target.name]: e.target.value
     });
@@ -28,6 +29,7 @@ const Formulario = () => {
   const submitForm = e => {
     e.preventDefault();
 
+    //Validar Campos
     if (
       mascota.trim() === "" ||
       padre.trim() === "" ||
@@ -36,18 +38,33 @@ const Formulario = () => {
       sintoma.trim() === ""
     ) {
       setError(true);
+      //return para frenar la ejecucion del codigo
       return;
     }
     setError(false);
-
     cita.id= uuid();
-    console.log(cita);
 
+    //Crear cita, se la paso a app
+    const crearCita = cita =>{
+      //modifico el state por medio de una copia del array para que no se pisen
+      setCitas([...citas, cita]);
+    }
+
+    //limpiar Formulario
+    const limpiarFormulario = () =>{
+      actualizarCita({
+        mascota: "",
+        padre: "",
+        fecha: "",
+        hora: "",
+        sintoma: ""
+      })
+    }
+
+    crearCita(cita);
+    limpiarFormulario();
 
   };
-
-  //Validar Campos
-
   return (
     <Fragment>
       <h4 className="font-weight-bold">Crear nueva cita</h4>
@@ -113,5 +130,8 @@ const Formulario = () => {
     </Fragment>
   );
 };
+
+
+
 
 export default Formulario;

@@ -11,3 +11,10 @@ body {
 hr{
   border-top: 2px solid lightskyblue !important;
 }
+
+.card{
+  min-width: 250px !important;
+  max-width: 330px !important;
+  margin-bottom: 1em !important;
+  margin-right: .5rem!important;
+}
