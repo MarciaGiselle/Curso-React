@@ -4,6 +4,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import Navegador from "./components/Nav";
 import Formulario from "./components/Formulario";
 import Citas from "./components/Citas";
+import Footer from "./components/Footer";
 
 function App() {
   let citasIniciales = (localStorage.getItem('citas')) ? JSON.parse(localStorage.getItem('citas')) : [];
@@ -17,16 +18,15 @@ function App() {
   return (
     <Fragment>
       <Navegador />
-        <h4 className="text-center text-primary my-3">Administrador de pacientes</h4>
-      <Container>
+      <Container className='mt-4 mb-5'>
         <Row>
-            <Col xs={12} md={4}>
+            <Col xs={12} md={7} lg={4} >
               <Formulario
                 citas = {citas}
                 setCitas = {setCitas}
               />
             </Col>
-            <Col xs={12} md={8}>
+            <Col xs={12} md={5} lg={8}>
               <Citas
                 citas = {citas}
                 setCitas = {setCitas}
@@ -34,6 +34,7 @@ function App() {
             </Col>
         </Row>
       </Container>
+      <Footer/>
     </Fragment>
   );
 }

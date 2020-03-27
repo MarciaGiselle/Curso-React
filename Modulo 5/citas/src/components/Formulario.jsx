@@ -1,6 +1,7 @@
 import React, { Fragment, useState } from "react";
-import { Form, Row, Button } from "react-bootstrap";
+import { Form, Button, Container } from "react-bootstrap";
 import uuid from "uuid/v4";
+import PropTypes from 'prop-types';
 
 const Formulario = ({citas, setCitas}) => {
   const [cita, actualizarCita] = useState({
@@ -66,21 +67,21 @@ const Formulario = ({citas, setCitas}) => {
 
   };
   return (
-    <Fragment>
+    <Container>
       <h4 className="font-weight-bold">Crear nueva cita</h4>
       <hr />
 
       {error ? (
-        <h5 className="text-danger">Todos los campos son obligatorios</h5>
+        <h6 className="text-light bg-danger rounded text-center py-1">Por favor, complete todos los campos   
+        <span aria-label='emoji' role='img'> &#10069;</span></h6>
       ) : null}
-      <h5></h5>
-      <Form onSubmit={submitForm}>
+      <Form onSubmit={submitForm} className='mb-5'>
         <Form.Group>
-          <Form.Label>Nombre del paciente</Form.Label>
+          <Form.Label>Nombre de la Mascota</Form.Label>
           <Form.Control
             type="text"
             name="mascota"
-            placeholder="Nombre del paciente"
+            placeholder="Nombre de la mascota"
             onChange={handleChangeState}
             value={mascota}
           />
@@ -124,14 +125,17 @@ const Formulario = ({citas, setCitas}) => {
           />
         </Form.Group>
         <Button variant="primary" type="submit" block>
-          Agregar Cita
+          Agregar Cita &#10004;
         </Button>
       </Form>
-    </Fragment>
+    </Container>
   );
 };
 
-
-
+//documentacion
+Formulario.propTypes = {
+  citas : PropTypes.array.isRequired,
+  setCitas : PropTypes.func.isRequired 
+}
 
 export default Formulario;

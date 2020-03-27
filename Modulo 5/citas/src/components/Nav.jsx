@@ -1,13 +1,10 @@
 import React from 'react'
-import {  Navbar, Nav } from 'react-bootstrap';
+import {  Navbar } from 'react-bootstrap';
 
 const Navegador = () => {
     return ( 
-        <Navbar bg="primary" variant="dark">
-        <Navbar.Brand href="#home">CoSalud</Navbar.Brand>
-        <Nav className="mr-auto">
-          <Nav.Link href="index.html">Inicio</Nav.Link>
-        </Nav>
+        <Navbar bg="primary" variant="dark" className="justify-content-center mb-2">
+          <Navbar.Brand>Administrador de citas</Navbar.Brand>
       </Navbar>
      );
 }

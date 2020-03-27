@@ -1,5 +1,6 @@
 import React from "react";
 import { Card, Container, Button, CardDeck } from "react-bootstrap";
+import PropTypes from 'prop-types';
 
 const Citas = ({ citas , setCitas}) => {
     
@@ -8,7 +9,7 @@ const Citas = ({ citas , setCitas}) => {
         setCitas(citasActivas);
     }
   
-    const titulo = citas.length === 0 ? "No hay citas" : "Administra tus citas";
+    const titulo = citas.length === 0 ? "Aún no hay citas" : "Administra tus citas";
     return (
     <Container>
       <h4 className="font-weight-bold">{titulo}</h4>
@@ -23,16 +24,16 @@ const Citas = ({ citas , setCitas}) => {
                 </Card.Subtitle>
                 <Card.Text>
                   <span>
-                    Fecha : <b>{cita.fecha}</b> <br/>
+                    Fecha: <b>{cita.fecha}</b> <br/>
                     Hora: <b> {cita.hora}</b>
                   </span><br/>
-                  <span>Sintomas :</span>
+                  <span>Síntomas: </span>
                   {cita.sintoma}
                 </Card.Text>
-                <Button variant='danger' size='sm' block
+                <Button variant='outline-danger' size='sm' block
                     onClick= {()=>eliminarCita(cita.id)}
                 >
-                Eliminar &times;       
+                Eliminar cita <span aria-label='emoji' role='img'>&#10060;</span>   
                 </Button>
               </Card.Body>
             </Card>
@@ -42,4 +43,10 @@ const Citas = ({ citas , setCitas}) => {
   );
 };
 
+//documentacion
+Citas.propTypes = {
+    citas : PropTypes.array.isRequired,
+    setCitas : PropTypes.func.isRequired 
+  }
+  
 export default Citas;
