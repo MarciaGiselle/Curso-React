@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Container, Card } from "react-bootstrap";
 import Gasto from "./Gasto";
 
@@ -8,11 +8,11 @@ const Gastos = ({ gastosSemanales }) => {
   if (gastosSemanales.length === 0) {
     titulo = "Aún no hay gastos";
   } else {
-    titulo = "Tus gastos creados.";
+    titulo = "Tus gastos creados";
     cardGasto = "card gasto mb-3";
   }
   return (
-    <Container>
+    <Fragment>
       <h4>{titulo}</h4>
       <hr />
       <div className={cardGasto}>
@@ -22,7 +22,7 @@ const Gastos = ({ gastosSemanales }) => {
           ))}
         </Card.Body>
       </div>
-    </Container>
+    </Fragment>
   );
 };
 

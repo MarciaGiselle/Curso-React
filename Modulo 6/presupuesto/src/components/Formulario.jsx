@@ -63,10 +63,9 @@ const submitForm = e => {
 
 }
   return (
-    <Container>
+      <Form  className='mb-5' onSubmit={submitForm}>
       <h4>Agrega tus gastos aquí</h4>
       <hr />
-      <Form  className='mb-5' onSubmit={submitForm}>
         <Form.Group>
           <Form.Label>Nombre del Gasto</Form.Label>
           <Form.Control
@@ -94,7 +93,6 @@ const submitForm = e => {
           Agregar Gasto &#10004;
         </Button>
       </Form>
-    </Container>
   );
 };
 

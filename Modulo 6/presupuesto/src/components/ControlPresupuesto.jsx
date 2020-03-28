@@ -8,13 +8,13 @@ const ControlPresupuesto = ({ restante, presupuesto }) => {
       <Alert variant={establecerColorAlert(presupuesto, restante)}>
           <div className='container'>
               <div className='row'>
-                  <div className='col-lg-7'>
-                    <h5 className='mb-0'>Restante:</h5>
+                  <div className='col-7 px-0'>
+                    <h5 className='mb-0'>Restante</h5>
                   </div>
-                  <div className='text-right col-lg-1'>
+                  <div className='text-right col-1 px-0'>
                    <h5 className='mb-0'>$</h5> 
                   </div>
-                  <div className='col text-right col-lg-4'>
+                  <div className='text-right col-4 px-0'>
                     <h5 className='mb-0'><b>{restante}</b></h5>
                   </div>
               </div>
@@ -24,13 +24,13 @@ const ControlPresupuesto = ({ restante, presupuesto }) => {
       <Alert variant="success">
       <div className='container'>
               <div className='row'>
-                  <div className='col-lg-7'>
-                    <h5 className='mb-0'>Presupuesto total :</h5>
+                  <div className='col-7 px-0'>
+                    <h5 className='mb-0'>Presupuesto total</h5>
                   </div>
-                  <div className='text-right col-lg-1'>
+                  <div className='text-right col-1 px-0'>
                    <h5 className='mb-0'>$</h5> 
                   </div>
-                  <div className='col text-right col-lg-4'>
+                  <div className='col text-right col-4 px-0'>
                     <h5 className='mb-0'><b>{presupuesto}</b></h5>
                   </div>
               </div>

@@ -1,4 +1,4 @@
-import React, { useState, Fragment , useEffect} from "react";
+import React, { useState, Fragment, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
 import { Container, Card, Row, Col } from "react-bootstrap";
@@ -8,8 +8,7 @@ import Formulario from "./components/Formulario";
 import ListadoDeGastos from "./components/ListadoDeGastos";
 import ControlPresupuesto from "./components/ControlPresupuesto";
 import Mensaje from "./components/Mensaje";
-
-
+import Footer from "./components/Footer";
 
 function App() {
   const [presupuesto, setPresupuesto] = useState(0);
@@ -17,64 +16,61 @@ function App() {
   const [gastosSemanales, setGastoSemanal] = useState([]);
   const [gasto, setNuevosGastos] = useState({});
   const [resta, realizarResta] = useState(false);
-  const [mensaje, setMensajeAlert] = useState('');
+  const [mensaje, setMensajeAlert] = useState("");
 
   useEffect(() => {
-    if(resta){
-    setGastoSemanal([
-      ...gastosSemanales,
-      gasto
-    ])
+    if (resta) {
+      setGastoSemanal([...gastosSemanales, gasto]);
 
-    setRestante(restante-gasto.monto);
-
-  }
-  }, [gasto])
-  
+      setRestante(restante - gasto.monto);
+    }
+  }, [gasto]);
 
   return (
     <Fragment>
       <Nav />
-      <Container>
-        <Card className="mt-4">
-          <Card.Body>
-            {presupuesto === 0 ? (
-              <Condicional
-                setPresupuesto={setPresupuesto}
-                setRestante={setRestante}
-                setMensajeAlert = {setMensajeAlert}
-              />
-            ) : (
-              <Fragment>
-                <Row className="justify-content-md-center">
-                  <Col md='auto'>
-                    {mensaje !== '' ? <Mensaje mensaje={mensaje} /> : null }
-                  </Col>
-                </Row>
-                <Row>
-                <Col lg={6}>
-                  <Formulario 
-                    setNuevosGastos = {setNuevosGastos}
-                    realizarResta = {realizarResta}
-                    restante = {restante}
+      <div className="container margin-container">
+        <div className="row h-100">
+          <div className="col-sm-12 align-self-center">
+            <div className="card card-block w-100 mx-auto">
+              <Card.Body className="mx-0 px-1">
+                {presupuesto === 0 ? (
+                  <Condicional
+                    setPresupuesto={setPresupuesto}
+                    setRestante={setRestante}
+                    setMensajeAlert={setMensajeAlert}
                   />
-                </Col>
-                <Col lg={6}>
-                  <ListadoDeGastos
-                    gastosSemanales = {gastosSemanales}
-                  />
-                  <ControlPresupuesto
-                    restante ={restante}
-                    presupuesto={presupuesto}
-                  />
-
-                </Col>
-              </Row>
-              </Fragment>
-            )}
-          </Card.Body>
-        </Card>
-      </Container>
+                ) : (
+                  <Fragment>
+                    <Row className="justify-content-md-center">
+                      <Col md="auto">
+                        {mensaje !== "" ? <Mensaje mensaje={mensaje} /> : null}
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col lg={5}>
+                        <Formulario
+                          setNuevosGastos={setNuevosGastos}
+                          realizarResta={realizarResta}
+                          restante={restante}
+                        />
+                      </Col>
+                      <Col lg={7}>
+                        <ListadoDeGastos gastosSemanales={gastosSemanales} />
+                        <ControlPresupuesto
+                          restante={restante}
+                          presupuesto={presupuesto}
+                        />
+                      </Col>
+                    </Row>
+                  </Fragment>
+                )}
+              </Card.Body>
+            </div>
+          </div>
+        </div>
+      </div>
+      <Footer />
     </Fragment>
   );
 }

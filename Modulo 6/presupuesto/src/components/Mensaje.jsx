@@ -9,11 +9,11 @@ const Mensaje = ({ mensaje }) => {
       {show ? (
         <Alert
           variant="dark"
-          className="text-center"
+          className=" mb-4"
           onClose={() => setShow(false)}
           dismissible
         >
-          <p className="m-0">{mensaje}</p>
+          <p className="m-0">&#10004;  {mensaje}</p>
         </Alert>
       ) : null}
     </div>
