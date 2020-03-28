@@ -72,7 +72,7 @@ const submitForm = e => {
           <Form.Control
             type="text"
             name="nombreGasto"
-            placeholder="Ejemplo Transporte"
+            placeholder="Transporte, comida, libro, etcétera."
             onChange= {handleChangeGasto}
             value={nombreGasto}
           />
@@ -90,7 +90,7 @@ const submitForm = e => {
 
         {error ? <Error mensaje={mensaje}/> : null}
 
-        <Button variant="primary" type="submit" block>
+        <Button variant="dark" type="submit" block>
           Agregar Gasto &#10004;
         </Button>
       </Form>

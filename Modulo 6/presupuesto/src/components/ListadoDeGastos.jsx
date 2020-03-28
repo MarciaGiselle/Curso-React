@@ -8,7 +8,7 @@ const Gastos = ({ gastosSemanales }) => {
   if (gastosSemanales.length === 0) {
     titulo = "Aún no hay gastos";
   } else {
-    titulo = "Administra tus gastos";
+    titulo = "Tus gastos creados.";
     cardGasto = "card gasto mb-3";
   }
   return (

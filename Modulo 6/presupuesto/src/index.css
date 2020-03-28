@@ -26,8 +26,8 @@ footer{
 }
 
 .monto{
-  background-color: aquamarine;
-  padding: 0.5rem;
+  background-color:#e9e9e9;
+  padding: 0 0.5rem;
   margin-bottom: 0.2rem;
   width: 100%;
 }
@@ -35,4 +35,8 @@ footer{
 .row{
     margin-right: 0px; 
     margin-left: 0px;
+}
+
+.condicional{
+  padding: 1rem 20rem ;
 }

@@ -7,6 +7,8 @@ import Nav from "./components/Nav";
 import Formulario from "./components/Formulario";
 import ListadoDeGastos from "./components/ListadoDeGastos";
 import ControlPresupuesto from "./components/ControlPresupuesto";
+import Mensaje from "./components/Mensaje";
+
 
 
 function App() {
@@ -15,6 +17,7 @@ function App() {
   const [gastosSemanales, setGastoSemanal] = useState([]);
   const [gasto, setNuevosGastos] = useState({});
   const [resta, realizarResta] = useState(false);
+  const [mensaje, setMensajeAlert] = useState('');
 
   useEffect(() => {
     if(resta){
@@ -33,23 +36,30 @@ function App() {
     <Fragment>
       <Nav />
       <Container>
-        <Card>
+        <Card className="mt-4">
           <Card.Body>
             {presupuesto === 0 ? (
               <Condicional
                 setPresupuesto={setPresupuesto}
                 setRestante={setRestante}
+                setMensajeAlert = {setMensajeAlert}
               />
             ) : (
-              <Row>
-                <Col>
+              <Fragment>
+                <Row className="justify-content-md-center">
+                  <Col md='auto'>
+                    {mensaje !== '' ? <Mensaje mensaje={mensaje} /> : null }
+                  </Col>
+                </Row>
+                <Row>
+                <Col lg={6}>
                   <Formulario 
                     setNuevosGastos = {setNuevosGastos}
                     realizarResta = {realizarResta}
                     restante = {restante}
                   />
                 </Col>
-                <Col>
+                <Col lg={6}>
                   <ListadoDeGastos
                     gastosSemanales = {gastosSemanales}
                   />
@@ -60,6 +70,7 @@ function App() {
 
                 </Col>
               </Row>
+              </Fragment>
             )}
           </Card.Body>
         </Card>

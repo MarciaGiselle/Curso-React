@@ -5,7 +5,7 @@ export const establecerColorAlert = (presupuesto, restante) => {
     else if( restante < presupuesto*0.5)    
         clase = "warning"
     else{
-        clase="primary"
+        clase="success"
     }    
     return clase;
 }   

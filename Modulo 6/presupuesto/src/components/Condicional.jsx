@@ -1,8 +1,8 @@
-import React, {Fragment, useState} from 'react'
-import {Form, Button} from 'react-bootstrap';
+import React, { useState} from 'react'
+import {Form, Button, Container} from 'react-bootstrap';
 import Error from './Error';
 
-const Condicional = ({setRestante, setPresupuesto}) => {
+const Condicional = ({setRestante, setPresupuesto, setMensajeAlert}) => {
     const [cantidad, setCantidad] = useState(0);
     
     const [error, setError] = useState(false);
@@ -33,29 +33,32 @@ const Condicional = ({setRestante, setPresupuesto}) => {
         setError(false);
         setPresupuesto(cantidad);
         setRestante(cantidad);
+        setMensajeAlert(" Presupuesto Creado! Ahora puedes cargar tus gastos aquí.");
     }
     
     return (  
-        <Fragment>
+        <Container className='condicional'>
             <Form
                 onSubmit={submitForm}
             >
             <Form.Group>
-            <Form.Label>Ingresa tu presupuesto</Form.Label>
+            <Form.Label>Ingresa tu presupuesto inicial</Form.Label>
             <Form.Control
                 type="number"
                 name="presupuesto"
                 onChange={ definirPresupuesto}
-            /><br/>
+            />
+            <small className='text-muted'>Números mayores a 0</small>
+            <br/><br/>
             {error ? <Error mensaje={mensaje}/> : null}
-            <Button variant='primary' block
+            <Button variant='dark' block
                 type="submit"
             >Definir presupuesto</Button>
 
             </Form.Group>
             </Form>     
 
-        </Fragment>
+        </Container>
     );
 }
  
