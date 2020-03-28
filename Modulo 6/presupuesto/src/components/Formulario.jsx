@@ -1,5 +1,5 @@
 import React, {  useState } from "react";
-import { Form, Button, Container } from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
 import shortid from "shortid";
 import PropTypes from 'prop-types';
 import Error from './Error';
@@ -59,7 +59,6 @@ const submitForm = e => {
   })
 
   realizarResta(true);
- 
 
 }
   return (

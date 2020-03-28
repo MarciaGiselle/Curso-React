@@ -1,7 +1,7 @@
 import React, { useState, Fragment, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
-import { Container, Card, Row, Col } from "react-bootstrap";
+import { Card, Row, Col } from "react-bootstrap";
 import Condicional from "./components/Condicional";
 import Nav from "./components/Nav";
 import Formulario from "./components/Formulario";
@@ -17,14 +17,24 @@ function App() {
   const [gasto, setNuevosGastos] = useState({});
   const [resta, realizarResta] = useState(false);
   const [mensaje, setMensajeAlert] = useState("");
+  const [gastoEliminado, setGastoEliminado] = useState(0);
 
   useEffect(() => {
     if (resta) {
       setGastoSemanal([...gastosSemanales, gasto]);
-
       setRestante(restante - gasto.monto);
+    
     }
   }, [gasto]);
+
+  useEffect(()=>{
+    if (resta) {
+      const gastosActivos = gastosSemanales.filter(gasto => gasto.id !== gastoEliminado);
+      const eliminado = gastosSemanales.filter(gasto => gasto.id === gastoEliminado);
+      setRestante( restante + eliminado[0].monto);
+      setGastoSemanal(gastosActivos);
+    }
+  }, [gastoEliminado])
 
   return (
     <Fragment>
@@ -48,15 +58,18 @@ function App() {
                       </Col>
                     </Row>
                     <Row>
-                      <Col lg={5}>
+                      <Col lg={4}>
                         <Formulario
                           setNuevosGastos={setNuevosGastos}
                           realizarResta={realizarResta}
                           restante={restante}
                         />
                       </Col>
-                      <Col lg={7}>
-                        <ListadoDeGastos gastosSemanales={gastosSemanales} />
+                      <Col lg={8}>
+                        <ListadoDeGastos
+                          gastosSemanales={gastosSemanales}
+                          setGastoSemanal={setGastoSemanal}
+                          setGastoEliminado={setGastoEliminado}/>
                         <ControlPresupuesto
                           restante={restante}
                           presupuesto={presupuesto}
