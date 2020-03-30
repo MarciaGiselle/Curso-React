@@ -1,15 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import { Alert } from "react-bootstrap";
 
-const Mensaje = ({ mensaje }) => {
-  const [show, setShow] = useState(true);
+const Mensaje = ({ mensaje , show ,setShow}) => {
 
   return (
     <div>
       {show ? (
         <Alert
-          variant="dark"
-          className=" mb-4"
+          className="mb-2 success-alert"
           onClose={() => setShow(false)}
           dismissible
         >

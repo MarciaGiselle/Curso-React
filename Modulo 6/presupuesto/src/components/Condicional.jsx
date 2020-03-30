@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import Error from "./Error";
 
-const Condicional = ({ setRestante, setPresupuesto, setMensajeAlert }) => {
+const Condicional = ({ setRestante, setPresupuesto, setMensajeAlert, setShow }) => {
   const [cantidad, setCantidad] = useState(0);
 
   const [error, setError] = useState(false);
@@ -36,6 +36,7 @@ const Condicional = ({ setRestante, setPresupuesto, setMensajeAlert }) => {
     setMensajeAlert(
       " Presupuesto Creado! Ahora puedes cargar tus gastos aquí."
     );
+    setShow(true);
   };
 
   return (

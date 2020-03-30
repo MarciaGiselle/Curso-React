@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import { Card, Button } from "react-bootstrap";
 import Gasto from "./Gasto";
 
-const Gastos = ({ gastosSemanales, setGastoSemanal, setGastoEliminado}) => {
+const Gastos = ({ gastosSemanales, setMensajeAlert, setGastoEliminado, setShow, realizarResta}) => {
   let titulo = "";
   let cardGasto = "";
   if (gastosSemanales.length === 0) {
@@ -10,6 +10,14 @@ const Gastos = ({ gastosSemanales, setGastoSemanal, setGastoEliminado}) => {
   } else {
     titulo = "Tus gastos creados";
     cardGasto = "card gasto mb-3";
+  }
+
+  const setEliminar = (id) =>{
+    realizarResta(true);
+    setGastoEliminado(id);
+    setMensajeAlert("El gasto se ha eliminado");
+    setShow(true);
+
   }
 
   return (
@@ -25,7 +33,7 @@ const Gastos = ({ gastosSemanales, setGastoSemanal, setGastoEliminado}) => {
                 <div className="col-1">
                   <Button
                     variant="danger"
-                    onClick={() => setGastoEliminado(gasto.id)}
+                    onClick={() => setEliminar(gasto.id)}
                   > X </Button>
                 </div>
                 <hr className="m-0" />

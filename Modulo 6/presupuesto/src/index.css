@@ -58,7 +58,7 @@ hr{
 
 
 .margin-container{
-  margin: 5% auto;
+  margin: 2% auto;
 }
 
 footer{
@@ -71,12 +71,23 @@ footer{
     
 }
 
-
+.success-alert{
+color: #ffffff;
+background-color: #39864b;
+border-color: #065819;
+}
 @media (max-width: 600px) {
 
 .container, .card, .row, .col{
   padding: 0.15rem;
+  width: 100% !important;
 }
 
 }
 
+@media (min-width: 1200px){
+
+.container, .container-lg, .container-md, .container-sm, .container-xl {
+    max-width: 1300px;
+}
+}
