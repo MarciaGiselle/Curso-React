@@ -13,6 +13,7 @@ const Boton = styled.button`
   color: green;
   font-family: Arial, Helvetica, sans-serif;
   margin-top: 3rem;
+  margin-bottom:0.5rem;
   padding: 1rem 3rem;
   font-size: 1.5rem;
   border: 2px solid #024c12;
