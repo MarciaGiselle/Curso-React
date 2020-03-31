@@ -1,0 +1,46 @@
+body {
+  margin: 0;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif!important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media (max-width: 600px) {
+
+  #contenedorFormulario{
+    padding: 2rem 1rem;
+    width: 95% !important;
+  }
+  
+  }
+
+  ul{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .resultado{
+    margin: 0;
+  }
+  .resultado-enter{
+    transition: .10s;
+  }
+
+  .resultado-enter.resultado-enter-active{
+    transform: translateY(0%);
+  }
+
+  .resultado-exit{
+    transform: translateY(0);
+    transition: .5s;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  }
+
+  .resultado-exit-active{
+    opacity: 0;
+    transform: translateY(-10%);
+  }
