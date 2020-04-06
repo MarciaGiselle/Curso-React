@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Error from './Error';
+import PropTypes from 'prop-types';
 
 const Formulario = ({ guardarBusqueda }) => {
   const [termino, setTermino] = useState("");
@@ -21,17 +22,17 @@ const Formulario = ({ guardarBusqueda }) => {
     <div className="container">
       <form onSubmit={submitForm}>
         <div className="row">
-          <div className="form-group col-md-8">
+          <div className="form-group col-md-9">
             <input
               type="text"
               className="form-control from-control-lg"
-              placeholder="Busca cafe, futbol, regalos ..."
+              placeholder="Busca café, fútbol, regalos ..."
               onChange={(e) => setTermino(e.target.value)}
               value={termino}
             />
           </div>
 
-          <div className="form-group col-md-4">
+          <div className="form-group col-md-3">
             <input
               type="submit"
               className="btn  btn-primary btn-block"
@@ -48,5 +49,10 @@ const Formulario = ({ guardarBusqueda }) => {
     </div>
   );
 };
+
+
+Formulario.propTypes={
+  guardarBusqueda:PropTypes.func.isRequired
+}
 
 export default Formulario;
