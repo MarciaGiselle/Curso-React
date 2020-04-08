@@ -1,39 +1,68 @@
-import React, {useContext} from 'react';
+import React, { useContext, useState } from 'react';
 import {CategoriasContext} from '../Context/CategoriasContext';
+import { RecetasContext } from '../Context/RecetasContext';
 
 const Formulario = () => {
 
+    //por medio del context traigo el listado de categorias
     const {categorias}= useContext(CategoriasContext);
+    //paso la busqueda al context para hacer la busqueda de recetas
+    const {setBusquedaParaApi, setConsultarApi}= useContext(RecetasContext);
 
-    console.log(categorias);
+    const [busqueda, setBusqueda] = useState({
+        ingrediente : '',
+        categoria : 'Ordinary Drink'
+    });
+
+    const guardarBusqueda = e =>{
+        setBusqueda({
+            ...busqueda,
+            [e.target.name] : e.target.value
+        });
+    }
+
 
     return (  
-       <form className= 'col-12'>
+       <form 
+            className= 'col-12'
+            onSubmit= {
+                e => {
+                    e.preventDefault();
+                    setBusquedaParaApi(busqueda);
+                    setConsultarApi(true)      
+            }}
+       >
            <fieldset className='text-center'>
                <legend>Busca bebidas por categoria o ingrediente</legend>
            </fieldset>
 
         <div className='row'>
-            <div className='col-md-4'>
+            <div className='col-md-5'>
                 <input
                     type='text'
-                    name='nombre'
+                    name='ingrediente'
                     className='form-control'
                     placeholder='Ingrediente'
+                    onChange={guardarBusqueda}
                 />
             </div>
             <div className='col-md-4'>
                 <select
                     className='form-control'
                     name='categoria'
+                    onChange={guardarBusqueda}
                 >
-                    <option value=''>Selecciona categoria</option>
-
+                    {categorias.map(categoria =>
+                        <option 
+                            key={categoria.strCategory}
+                            value={categoria.strCategory}
+                        >{categoria.strCategory}</option>
+                    )}
                 </select>
             </div>
-            <div className='col-md-4'>
+            <div className='col-md-3'>
                 <input type="submit"
-                className='btn btn-block btn-primary'
+                className='btn btn-block btn-success'
                 value='Buscar recetas'/>
             </div>
         </div>

@@ -9,6 +9,10 @@ body {
   background-color: #e5e5e5;
   min-height: 100%;
 }
+.border-rosa {
+  border-color:  #ec3a49;
+}
+
 header {
   background-color: #ec3a49;
   color: white;
