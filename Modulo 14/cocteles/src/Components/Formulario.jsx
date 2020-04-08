@@ -32,8 +32,8 @@ const Formulario = () => {
                     setConsultarApi(true)      
             }}
        >
-           <fieldset className='text-center'>
-               <legend>Busca bebidas por categoria o ingrediente</legend>
+           <fieldset className='text-center  mb-4'>
+               <legend>Busca bebidas por categoría o ingrediente</legend>
            </fieldset>
 
         <div className='row'>
