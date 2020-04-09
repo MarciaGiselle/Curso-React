@@ -1,22 +1,27 @@
-import React from 'react';
-import Sidebar from '../layout/Sidebar';
+import React from "react";
+import Sidebar from "../layout/Sidebar";
+import BarraSuperior from "../layout/BarraSuperior";
+import FormularioTarea from "../tasks/FormularioTarea";
+import ListadoTareas from "../tasks/ListadoTareas";
 
 const Proyecto = () => {
-    return (
-        <div className='contenedor-app'>
-          <aside>
-            <Sidebar></Sidebar>
-          </aside>
+  return (
+    <div className="contenedor-app">
+      <aside>
+        <Sidebar></Sidebar>
+      </aside>
 
-          <div className='seccion-principal'>
-            <main>
-              <div className='contenedor-tareas'>
-
-              </div>
-            </main>
+      <div className="seccion-principal">
+        <BarraSuperior />
+        <main>
+          <FormularioTarea />
+          <div className="contenedor-tareas">
+            <ListadoTareas />
           </div>
-        </div>
-      );
-}
- 
+        </main>
+      </div>
+    </div>
+  );
+};
+
 export default Proyecto;
