@@ -2,29 +2,29 @@ import React, { Fragment, useState, useContext } from 'react';
 import projectContext from '../../context/projects/projectContext';
 
 
-const NuevoProyecto = () => {
+const NuevaMateria = () => {
 
     //obtener el state del formulario
     //traigo el context
     const proyectoContext = useContext(projectContext);
     //obtengo el valor de la variables
-    const{ formularioProyecto, mostrarFormulario, agregarProyectos, errorFormulario, mostrarError } = proyectoContext;
+    const{ formularioMateria, mostrarFormulario, agregarMaterias, errorFormulario, mostrarError } = proyectoContext;
 
     const [error, setError] = useState(false);
-    const [proyecto, setProyecto] = useState({
+    const [materia, setMateria] = useState({
         nombre:''
     });
 
-    const { nombre } = proyecto;
+    const { nombre } = materia;
 
-    const onChangeProyecto = e => {
-        setProyecto({
-            ...proyecto,
+    const onChangeMateria = e => {
+        setMateria({
+            ...materia,
             [e.target.name] : e.target.value
         })
     }
 
-    const onSubmitProyecto = e => {
+    const onSubmitMateria = e => {
         e.preventDefault();
 
         if(nombre.trim() === ''){
@@ -32,8 +32,8 @@ const NuevoProyecto = () => {
             return;
         }
 
-        agregarProyectos(proyecto);
-        setProyecto({
+        agregarMaterias(materia);
+        setMateria({
             nombre: ''
         });
     }
@@ -44,23 +44,23 @@ const NuevoProyecto = () => {
                 type='button'
                 className='btn btn-block btn-primario'
                 onClick = {() => mostrarFormulario()}
-            >Nuevo Proyecto
+            >Nueva Materia
             </button>
             
-            { formularioProyecto
+            { formularioMateria
             
             ?
                 <form
                     className='formulario-nuevo-proyecto'
-                    onSubmit={onSubmitProyecto}
+                    onSubmit={onSubmitMateria}
                 >
                     <input
                         type='text'
                         className='input-text'
-                        placeholder='Nombre del proyecto'
+                        placeholder='Nombre de la materia'
                         name='nombre'
                         value={nombre}
-                        onChange={onChangeProyecto}
+                        onChange={onChangeMateria}
                     />
             {errorFormulario ? <p className='mensaje error'> <span>	&#x26A0;&#xFE0F;</span> Ingresa un nombre</p>: null}
 
@@ -68,7 +68,7 @@ const NuevoProyecto = () => {
                     <input
                         type='submit'
                         className='btn btn-primario btn-block'
-                        value='Agregar proyecto'
+                        value='Agregar materia'
                     />
                 </form>
             
@@ -81,4 +81,4 @@ const NuevoProyecto = () => {
     );
 }
  
-export default NuevoProyecto;
+export default NuevaMateria;

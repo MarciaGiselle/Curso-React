@@ -1,31 +1,31 @@
 import React, { useContext, useEffect } from "react";
-import Proyecto from "./Proyecto";
+import Materia from "./Materia";
 import projectContext from '../../context/projects/projectContext';
 
-const ListadoProyectos = () => {
+const ListadoMaterias = () => {
 
   //extraigo los proyectos del state inicial
   const proyectoContext = useContext(projectContext);
-  const{ proyectos, obtenerProyectos } = proyectoContext;
+  const{ materias, obtenerMaterias } = proyectoContext;
 
   //consulto si tiene contenido
   useEffect(() => {
-      obtenerProyectos();
+    obtenerMaterias();
   }, [])
   
 
   return (
     <div className="proyectos">
-      <h2>Tus proyectos</h2>
+      <h2>Tus materias</h2>
       <ul className="listado-proyectos">
-        {proyectos.map((proyecto) => (
-          <Proyecto 
-            key={proyecto.id}
-            proyecto={proyecto} />
+        {materias.map((materia) => (
+          <Materia 
+            key={materia.id}
+            materia={materia} />
         ))}
       </ul>
     </div>
   );
 };
 
-export default ListadoProyectos;
+export default ListadoMaterias;

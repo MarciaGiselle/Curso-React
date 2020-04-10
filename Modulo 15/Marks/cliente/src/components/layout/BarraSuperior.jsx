@@ -5,7 +5,7 @@ const BarraSuperior = () => {
         <div className='app-header'>
             <p className='nombre-usuario'>
                 Hola  <span>
-                    Juan Pablo
+                   Marcia
                 </span>
             </p>
 

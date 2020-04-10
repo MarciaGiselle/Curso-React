@@ -3,26 +3,27 @@ import { v4 as uuid } from 'uuid';
 import projectContext from './projectContext';
 import projectReducer from './projectReducer';
 import { 
-    FORMULARIO_PROYECTO,
-    OBTENER_PROYECTOS,
-    AGREGAR_PROYECTO,
+    FORMULARIO_MATERIA,
+    OBTENER_MATERIAS,
+    AGREGAR_MATERIA,
     VALIDAR_FORMULARIO,
-    PROYECTO_ACTUAL
+    MATERIA_ACTUAL,
+    ELIMINAR_MATERIA
  } from '../../types';
 
 const ProjectState = props => {
 
-    const proyectos = [
+    const materias = [
         { id: 1, nombre: "Tienda Virtual" },
         { id: 2, nombre: "Intranet" },
         { id: 3, nombre: "Diseño de sitio web" }
     ]
 
     const inicialState = {
-        proyectos : [],
-        formularioProyecto : false,
+        materias : [],
+        formularioMateria : false,
         errorFormulario: false,
-        proyectoActual: null
+        materiaActual: null
     }
 
     //Dispatch para ejecutar las acciones
@@ -31,24 +32,24 @@ const ProjectState = props => {
     //funciones del crud
     const mostrarFormulario = () => {
         dispatch({
-            type: FORMULARIO_PROYECTO
+            type: FORMULARIO_MATERIA
         })
     }
 
-    //Obtener los proyectos
-    const obtenerProyectos = () => {
+    //Obtener los materias
+    const obtenerMaterias = () => {
         dispatch({
-            type: OBTENER_PROYECTOS,
-            payload: proyectos
+            type: OBTENER_MATERIAS,
+            payload: materias
         })
     }
 
-    //agregar nuevo proyecto
-    const agregarProyectos = nuevoProyecto => {
-        nuevoProyecto.id = uuid();
+    //agregar nuevo materia
+    const agregarMaterias = nuevoMateria => {
+        nuevoMateria.id = uuid();
         dispatch({
-            type: AGREGAR_PROYECTO,
-            payload: nuevoProyecto
+            type: AGREGAR_MATERIA,
+            payload: nuevoMateria
         })
     }
 
@@ -58,9 +59,16 @@ const ProjectState = props => {
         })
     }
 
-    const seleccionarProyecto = id => {
+    const seleccionarMateria = id => {
         dispatch({
-            type: PROYECTO_ACTUAL,
+            type: MATERIA_ACTUAL,
+            payload: id
+        })
+    }
+
+    const eliminarMateria = id => {
+        dispatch({
+            type: ELIMINAR_MATERIA,
             payload: id
         })
     }
@@ -68,15 +76,16 @@ const ProjectState = props => {
     return(
         <projectContext.Provider
             value={{
-                formularioProyecto: state.formularioProyecto,
-                proyectos: state.proyectos,
+                formularioMateria: state.formularioMateria,
+                materias: state.materias,
                 errorFormulario : state.errorFormulario,
-                proyectoActual : state.proyectoActual,
+                materiaActual : state.materiaActual,
                 mostrarError,
                 mostrarFormulario,
-                obtenerProyectos,
-                agregarProyectos,
-                seleccionarProyecto   
+                obtenerMaterias,
+                agregarMaterias,
+                seleccionarMateria   ,
+                eliminarMateria
             }}
         >
             {props.children}

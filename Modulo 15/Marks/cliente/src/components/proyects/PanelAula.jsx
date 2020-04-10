@@ -6,9 +6,9 @@ import ListadoTareas from "../tasks/ListadoTareas";
 import projectContext from '../../context/projects/projectContext';
 
 
-const Proyecto = () => {
+const PanelAula = () => {
   const proyectoContext = useContext(projectContext);
-  const{ proyectoActual } = proyectoContext;
+  const{ materiaActual } = proyectoContext;
   
   return (
     <div className="contenedor-app">
@@ -19,7 +19,7 @@ const Proyecto = () => {
         <BarraSuperior />
         <main>
           {
-            proyectoActual ?
+            materiaActual ?
             (
               <Fragment>
                 <FormularioTarea />
@@ -43,4 +43,4 @@ const Proyecto = () => {
   );
 };
 
-export default Proyecto;
+export default PanelAula;

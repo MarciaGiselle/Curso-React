@@ -5,7 +5,7 @@ import projectContext from '../../context/projects/projectContext';
 const ListadoTareas = () => {
 
     const proyectoContext = useContext(projectContext);
-    const{ proyectoActual } = proyectoContext;
+    const{ materiaActual, eliminarMateria } = proyectoContext;
     
   
     const listadoTareas = [
@@ -16,7 +16,7 @@ const ListadoTareas = () => {
     ]
     return (  
         <Fragment>
-            <h2>Proyecto {proyectoActual.nombre}</h2>
+            <h2>Materia {materiaActual.nombre}</h2>
 
             <ul className='listado-tareas'>
                 {listadoTareas.length === 0 ?
@@ -36,8 +36,9 @@ const ListadoTareas = () => {
             <button
                 type='button'
                 className='btn btn-eliminar'
+                onClick={ () => eliminarMateria(materiaActual.id)}
             >
-                Eliminar Proyecto &times;
+                Eliminar Materia &times;
             </button>
 
         </Fragment>

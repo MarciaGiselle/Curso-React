@@ -4,7 +4,7 @@ import projectContext from '../../context/projects/projectContext';
 const FormularioTarea = () => {
 
     const proyectoContext = useContext(projectContext);
-    const{ proyectoActual } = proyectoContext;
+    const{ materiaActual } = proyectoContext;
     
     return (  
         <div className='formulario'>

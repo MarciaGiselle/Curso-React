@@ -1,6 +1,6 @@
 import React from "react";
-import NuevoProyecto from "../proyects/NuevoProyecto";
-import ListadoProyectos from "../proyects/ListadoProyectos";
+import NuevaMateria from "../proyects/NuevaMateria";
+import ListadoMaterias from "../proyects/ListadoMaterias";
 
 const Sidebar = () => {
   return (
@@ -9,9 +9,9 @@ const Sidebar = () => {
         MARTE<span>Tasks</span>
       </h1>
 
-      <NuevoProyecto/>
+      <NuevaMateria/>
         <br/>
-      <ListadoProyectos />
+      <ListadoMaterias />
     </aside>
   );
 };

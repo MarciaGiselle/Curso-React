@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import projectContext from '../../context/projects/projectContext';
 
-const Proyecto = ({proyecto}) => {
+const Materia = ({materia}) => {
     const proyectoContext = useContext(projectContext);
-    const{ seleccionarProyecto } = proyectoContext;
+    const{ seleccionarMateria } = proyectoContext;
 
 
     return (  
@@ -11,12 +11,12 @@ const Proyecto = ({proyecto}) => {
             <button
                 type='button'
                 className='btn btn-blank'
-                onClick = {() => seleccionarProyecto(proyecto.id)}
+                onClick = {() => seleccionarMateria(materia.id)}
             >
-                {proyecto.nombre}
+                {materia.nombre}
             </button>
         </li>
     );
 }
  
-export default Proyecto;
+export default Materia;
