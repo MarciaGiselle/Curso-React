@@ -116,6 +116,10 @@ aside  {
 
 .formulario-nuevo-proyecto {
   margin-top: 6rem;
+  padding: 2rem 0;
+  border-top: 1.5px dotted grey ;
+  border-bottom: 1.5px dotted grey;
+
 }
 .formulario-nuevo-proyecto .input-text {
   border-bottom: 1px solid var(--gris2);
@@ -126,7 +130,7 @@ aside  {
   color: var(--gris2);
 }
 .proyectos {
-  margin-top: 10rem;
+  margin-top: 6rem;
 }
 .listado-proyectos li {
   margin-bottom: 2rem;
@@ -236,7 +240,7 @@ aside  {
 }
 .estado button, 
 .mensaje {
-  font-weight: 900;
+  font-weight: 500;
   font-family: var(--textFont);
   font-size: 1rem;
   padding: .5rem;
@@ -246,7 +250,7 @@ aside  {
 }
 .mensaje {
   text-align: center;
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   border-radius: 0;
 }
 .mensaje:hover {
@@ -264,7 +268,9 @@ aside  {
 .error {
   max-width: 600px;
   margin: 2rem auto 0 auto;
-  background-color: rgb(170, 0, 0);
+  border-radius: 1rem;
+  border: 1px solid rgb(102, 2, 2);
+  background-color: rgb(173, 7, 7);
   color: var(--blanco);
 }
 

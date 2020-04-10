@@ -8,7 +8,7 @@ const NuevoProyecto = () => {
     //traigo el context
     const proyectoContext = useContext(projectContext);
     //obtengo el valor de la variables
-    const{ formularioProyecto, mostrarFormulario } = proyectoContext;
+    const{ formularioProyecto, mostrarFormulario, agregarProyectos, errorFormulario, mostrarError } = proyectoContext;
 
     const [error, setError] = useState(false);
     const [proyecto, setProyecto] = useState({
@@ -28,11 +28,14 @@ const NuevoProyecto = () => {
         e.preventDefault();
 
         if(nombre.trim() === ''){
-            setError(true);
+            mostrarError();
             return;
         }
 
-        setError(false);
+        agregarProyectos(proyecto);
+        setProyecto({
+            nombre: ''
+        });
     }
 
     return (  
@@ -43,7 +46,6 @@ const NuevoProyecto = () => {
                 onClick = {() => mostrarFormulario()}
             >Nuevo Proyecto
             </button>
-            {error ? <h1 className='error'>Error</h1>: null}
             
             { formularioProyecto
             
@@ -60,6 +62,8 @@ const NuevoProyecto = () => {
                         value={nombre}
                         onChange={onChangeProyecto}
                     />
+            {errorFormulario ? <p className='mensaje error'> <span>	&#x26A0;&#xFE0F;</span> Ingresa un nombre</p>: null}
+
 
                     <input
                         type='submit'
@@ -70,8 +74,9 @@ const NuevoProyecto = () => {
             
             
             : null
-
             }
+
+
         </Fragment>
     );
 }

@@ -11,12 +11,12 @@ const ListadoProyectos = () => {
   //consulto si tiene contenido
   useEffect(() => {
       obtenerProyectos();
-  }, [proyectos])
+  }, [])
   
 
   return (
-    <div className="projectos">
-      <h2>Tus projectos</h2>
+    <div className="proyectos">
+      <h2>Tus proyectos</h2>
       <ul className="listado-proyectos">
         {proyectos.map((proyecto) => (
           <Proyecto 
