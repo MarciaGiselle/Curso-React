@@ -9,7 +9,7 @@ const Sidebar = () => {
         MARTE<span>Tasks</span>
       </h1>
 
-      <NuevoProyecto></NuevoProyecto>
+      <NuevoProyecto/>
         <br/>
       <ListadoProyectos />
     </aside>

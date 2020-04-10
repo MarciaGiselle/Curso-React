@@ -7,9 +7,8 @@ import ListadoTareas from "../tasks/ListadoTareas";
 const Proyecto = () => {
   return (
     <div className="contenedor-app">
-      <aside>
-        <Sidebar></Sidebar>
-      </aside>
+     
+      <Sidebar></Sidebar>
 
       <div className="seccion-principal">
         <BarraSuperior />
