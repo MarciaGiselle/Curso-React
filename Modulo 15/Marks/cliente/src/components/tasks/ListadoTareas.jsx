@@ -1,19 +1,20 @@
 import React, { Fragment, useContext } from 'react';
 import Tarea from './Tarea';
 import projectContext from '../../context/projects/projectContext';
+import taskContext from '../../context/tasks/taskContext';
+import {CSSTransition, TransitionGroup}from 'react-transition-group';
 
 const ListadoTareas = () => {
 
     const proyectoContext = useContext(projectContext);
     const{ materiaActual, eliminarMateria } = proyectoContext;
+
+    const tareasContext = useContext(taskContext);
+    const{ tareasDeMateria } = tareasContext;
     
   
-    const listadoTareas = [
-        {nombre:'Agregar carrito', estado:true},
-        {nombre:'Login cliente', estado:false},
-        {nombre:'Acomodar cards', estado:false}
+    const listadoTareas = tareasDeMateria;
 
-    ]
     return (  
         <Fragment>
             <h2>Materia {materiaActual.nombre}</h2>
@@ -24,12 +25,18 @@ const ListadoTareas = () => {
                     <p>No hay tareas</p>
                 </li>
                 :
-                listadoTareas.map(tarea=>(
+                <TransitionGroup>
+                  { listadoTareas.map(tarea=>(
+                    <CSSTransition
+                        key={tarea.id}
+                        timeout={500}
+                        classNames='tarea'>
                     <Tarea
-                        key={tarea.nombre}
                         tarea={tarea}
                     />
-                ))
+                    </CSSTransition>
+                ))}
+                </TransitionGroup>
                 }
             </ul>
 
