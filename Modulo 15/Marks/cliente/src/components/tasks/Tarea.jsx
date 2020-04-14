@@ -4,23 +4,43 @@ import taskContext from '../../context/tasks/taskContext';
 const Tarea = ({tarea}) => {
 
     const tareasContext = useContext(taskContext);
-    const{ eliminarTarea, obtenerTareasDeMateria } = tareasContext;
+    const{ eliminarTarea, obtenerTareasDeMateria, cambiarEstado, setTareaAModificar } = tareasContext;
 
     const eliminar = () => {
         eliminarTarea(tarea.id);
         obtenerTareasDeMateria(tarea.idMateria)
     }
+
+    const cambiarEstadoTarea = tarea => {
+        if(tarea.estado){
+            tarea.estado = false;
+        }else{
+            tarea.estado = true;
+        }
+        cambiarEstado(tarea);
+    }
+
+    const modificarTareaSeleccionada = tarea => {
+        setTareaAModificar(tarea);
+    }
+
     return ( 
-        <li className='tarea sombra'>
+        <li className='tarea sombra' >
             <p>{tarea.nombre}</p>
             <div className='estado'>
                 {tarea.estado
                 ?
-                <button type='button' className='completo'>
+                <button 
+                    type='button' 
+                    className='completo'
+                    onClick={()=>cambiarEstadoTarea(tarea)}>
                     Completo
                 </button>
                 :
-                <button type='button' className='incompleto'>
+                <button 
+                    type='button' 
+                    className='incompleto'
+                    onClick={()=>cambiarEstadoTarea(tarea)}>
                     Incompleto
                 </button>
                 }
@@ -30,6 +50,7 @@ const Tarea = ({tarea}) => {
                 <button
                     type='button'
                     className='btn btn-primario'
+                    onClick= {() => modificarTareaSeleccionada(tarea)}
                 >
                   Editar  
                 </button>

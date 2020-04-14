@@ -21,22 +21,24 @@ const ListadoTareas = () => {
 
             <ul className='listado-tareas'>
                 {listadoTareas.length === 0 ?
-                <li className='tarea'>
-                    <p>No hay tareas</p>
-                </li>
+                    (<li className='tarea'>
+                        <p>No hay tareas</p>
+                    </li>)
                 :
-                <TransitionGroup>
-                  { listadoTareas.map(tarea=>(
-                    <CSSTransition
-                        key={tarea.id}
-                        timeout={500}
-                        classNames='tarea'>
-                    <Tarea
-                        tarea={tarea}
-                    />
-                    </CSSTransition>
-                ))}
-                </TransitionGroup>
+                    (<TransitionGroup >
+                        {listadoTareas.map(tarea=>(
+                            <CSSTransition
+                                key={tarea.id}
+                                timeout={500}
+                                classNames='tarea'
+                                >
+                            <Tarea
+                                tarea={tarea}
+                                
+                            />
+                            </CSSTransition>
+                        ))}
+                    </TransitionGroup>)
                 }
             </ul>
 

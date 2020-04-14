@@ -1,4 +1,4 @@
-import React, { useContext , useState} from 'react';
+import React, { useContext , useState , useEffect} from 'react';
 import projectContext from '../../context/projects/projectContext';
 import taskContext from '../../context/tasks/taskContext';
 
@@ -8,8 +8,10 @@ const FormularioTarea = () => {
     const{ materiaActual } = proyectoContext;
 
     const tareasContext = useContext(taskContext);
-    const{ nuevaTarea, obtenerTareasDeMateria, validarTarea, errorTarea} = tareasContext;
+    const{ nuevaTarea, obtenerTareasDeMateria, validarTarea, errorTarea, tareaAModificar, modificarTarea} = tareasContext;
     
+  
+
     const [tarea, setTarea] = useState({
         nombre:''
     });
@@ -23,6 +25,16 @@ const FormularioTarea = () => {
         })
     }
 
+    useEffect(() => {
+        if(tareaAModificar){
+            setTarea(tareaAModificar)
+        }else{
+            setTarea({
+                nombre:''
+            })
+        }
+    }, [tareaAModificar])
+
     const onSubmit = e => {
         e.preventDefault();
 
@@ -32,10 +44,16 @@ const FormularioTarea = () => {
             return;
         }
 
-        //agregar al state
-        tarea.idMateria = materiaActual.id;
-        tarea.estado = false;
-        nuevaTarea(tarea);
+        if(!tareaAModificar){
+            //crear
+            //agregar al state
+            tarea.idMateria = materiaActual.id;
+            tarea.estado = false;
+            nuevaTarea(tarea);
+        }else{
+            //modificar
+            modificarTarea(tarea);
+        }
 
         //recarga el array de tareas
         obtenerTareasDeMateria(materiaActual.id);
@@ -62,14 +80,14 @@ const FormularioTarea = () => {
                         onChange= {onChange}
                     />
                 </div>
-                {errorTarea ? <p className='mensaje error'> <span>	&#x26A0;&#xFE0F;</span> Ingresa un nombre para la tarea</p>: null}
+                {errorTarea ? <p className='mensaje error'> <span role='img' aria-label='emoji'>	&#x26A0;&#xFE0F;</span> Ingresa un nombre para la tarea</p>: null}
 
 
                 <div className='contenedor-input'>
                     <input
                         type='submit'
                         className='btn btn-primario btn-submit btn-block'
-                        value='Agregar tarea'
+                        value={tareaAModificar ? 'Editar Tarea': 'Agregar tarea'}
                     />
                 </div>
             </form>

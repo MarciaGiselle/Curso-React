@@ -10,7 +10,6 @@ const NuevaMateria = () => {
     //obtengo el valor de la variables
     const{ formularioMateria, mostrarFormulario, agregarMaterias, errorFormulario, mostrarError } = proyectoContext;
 
-    const [error, setError] = useState(false);
     const [materia, setMateria] = useState({
         nombre:''
     });
@@ -62,7 +61,7 @@ const NuevaMateria = () => {
                         value={nombre}
                         onChange={onChangeMateria}
                     />
-            {errorFormulario ? <p className='mensaje error'> <span>	&#x26A0;&#xFE0F;</span> Ingresa un nombre</p>: null}
+            {errorFormulario ? <p className='mensaje error'> <span role='img' aria-label='emoji'>	&#x26A0;&#xFE0F;</span> Ingresa un nombre</p>: null}
 
 
                     <input

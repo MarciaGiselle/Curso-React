@@ -26,7 +26,7 @@ const Materia = ({materia}) => {
                 {materia.nombre}
             </button>
         </li>
-    );
+    )
 }
  
 export default Materia;

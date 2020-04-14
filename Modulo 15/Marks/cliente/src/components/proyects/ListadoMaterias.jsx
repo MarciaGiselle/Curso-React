@@ -11,23 +11,30 @@ const ListadoMaterias = () => {
   //consulto si tiene contenido
   useEffect(() => {
     obtenerMaterias();
+    //eslint-disable-next-line
   }, []);
 
   return (
     <div className="proyectos">
       <h2>Tus materias</h2>
       <ul className="listado-proyectos">
-        <TransitionGroup>
-          {materias.map((materia) => (
-            <CSSTransition 
-              key={materia.id} 
-              timeout={500} 
-              classNames="proyecto">
-              <Materia  
-                materia={materia} />
-            </CSSTransition>
-          ))}
-        </TransitionGroup>
+        {materias.length === 0 ? (
+          <li className="tarea">
+            <p>No hay materias</p>
+          </li>
+        ) : (
+          <TransitionGroup>
+            {materias.map((materia) => (
+              <CSSTransition
+                key={materia.id}
+                timeout={500}
+                classNames="proyecto"
+              >
+                <Materia materia={materia} />
+              </CSSTransition>
+            ))}
+          </TransitionGroup>
+        )}
       </ul>
     </div>
   );
