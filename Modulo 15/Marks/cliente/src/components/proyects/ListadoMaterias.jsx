@@ -27,7 +27,7 @@ const ListadoMaterias = () => {
             {materias.map((materia) => (
               <CSSTransition
                 key={materia.id}
-                timeout={500}
+                timeout={300}
                 classNames="proyecto"
               >
                 <Materia materia={materia} />
