@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react';
 import { v4 as uuid } from 'uuid';
-import projectContext from './projectContext';
-import projectReducer from './projectReducer';
+import materiaContext from './materiaContext';
+import materiaReducer from './materiaReducer';
 import { 
     FORMULARIO_MATERIA,
     OBTENER_MATERIAS,
@@ -11,7 +11,7 @@ import {
     ELIMINAR_MATERIA
  } from '../../types';
 
-const ProjectState = props => {
+const MateriaState = props => {
 
     const materias = [
         { id: 1, nombre: "Tienda Virtual" },
@@ -27,7 +27,7 @@ const ProjectState = props => {
     }
 
     //Dispatch para ejecutar las acciones
-    const [ state, dispatch ] =  useReducer(projectReducer, inicialState);
+    const [ state, dispatch ] =  useReducer(materiaReducer, inicialState);
 
     //funciones del crud
     const mostrarFormulario = () => {
@@ -74,7 +74,7 @@ const ProjectState = props => {
     }
 
     return(
-        <projectContext.Provider
+        <materiaContext.Provider
             value={{
                 formularioMateria: state.formularioMateria,
                 materias: state.materias,
@@ -89,9 +89,9 @@ const ProjectState = props => {
             }}
         >
             {props.children}
-        </projectContext.Provider>
+        </materiaContext.Provider>
     )
 
 }
 
-export default ProjectState;
+export default MateriaState;

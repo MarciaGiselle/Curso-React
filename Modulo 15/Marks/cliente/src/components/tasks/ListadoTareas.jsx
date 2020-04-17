@@ -1,12 +1,12 @@
 import React, { Fragment, useContext } from 'react';
 import Tarea from './Tarea';
-import projectContext from '../../context/projects/projectContext';
+import materiaContext from '../../context/materia/materiaContext';
 import taskContext from '../../context/tasks/taskContext';
 import {CSSTransition, TransitionGroup}from 'react-transition-group';
 
 const ListadoTareas = () => {
 
-    const proyectoContext = useContext(projectContext);
+    const proyectoContext = useContext(materiaContext);
     const{ materiaActual, eliminarMateria } = proyectoContext;
 
     const tareasContext = useContext(taskContext);

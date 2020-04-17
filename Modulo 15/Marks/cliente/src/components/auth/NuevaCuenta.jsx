@@ -1,9 +1,10 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import { Link } from 'react-router-dom';
+import alertaContext from '../../context/alerta/alertaContext';
 
 const NuevaCuenta = () => {
 
-  const [error, setError] = useState(false);
+  const {alerta, mostrarAlerta} = useContext(alertaContext);
 
   const [usuario, setUsuario] = useState({
     nombre:'',
@@ -25,19 +26,21 @@ const NuevaCuenta = () => {
     e.preventDefault();
 
     //validar campos
-    if(email.trim() === '' || password.trim() === ''){
-      setError(true);
+    if(email.trim() === '' || password.trim() === '' || passwordDos.trim() === '' || nombre.trim() === ''){
+      mostrarAlerta("Todos los campos son obligatorios", "alerta-error")
       return;
     }
 
     //longitud de pass
     if(password.trim().length < 6){
-      setError(true);
+      mostrarAlerta("La password debe tener mínimo 6 caracteres", "alerta-error");
+
       return;
     }
     //2 pass iguales
     if(password.trim() !== passwordDos.trim()){
-      setError(true);
+      mostrarAlerta("Las passwords deben ser iguales", "alerta-error");
+
       return;
     }
 
@@ -52,7 +55,7 @@ const NuevaCuenta = () => {
       <div className='contenedor-form sombra-dark'>
         <h1>MARTE</h1>
         <h2>Crear cuenta</h2>
-        {error ? <h1 className='error'>Error</h1>: null}
+        {alerta ? (<h1 className={`alerta ${alerta.categoria}`}> {alerta.msg}</h1>): null}
 
         <form onSubmit={onSubmitNuevaCuenta}>
         <div className='campo-form'>

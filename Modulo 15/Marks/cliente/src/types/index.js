@@ -15,4 +15,6 @@ export const MODIFICAR_TAREA = 'MODIFICAR_TAREA';
 export const ESTADO_TAREA = 'ESTADO_TAREA';
 export const TAREA_A_MODIFICAR = 'TAREA_A_MODIFICAR';
 
-
+//alertas
+export const MOSTRAR_ALERTA = 'MOSTRAR_ALERTA';
+export const OCULTAR_ALERTA = 'OCULTAR_ALERTA';

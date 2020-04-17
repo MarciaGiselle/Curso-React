@@ -1,12 +1,12 @@
 import React, { Fragment, useState, useContext } from 'react';
-import projectContext from '../../context/projects/projectContext';
+import materiaContext from '../../context/materia/materiaContext';
 
 
 const NuevaMateria = () => {
 
     //obtener el state del formulario
     //traigo el context
-    const proyectoContext = useContext(projectContext);
+    const proyectoContext = useContext(materiaContext);
     //obtengo el valor de la variables
     const{ formularioMateria, mostrarFormulario, agregarMaterias, errorFormulario, mostrarError } = proyectoContext;
 

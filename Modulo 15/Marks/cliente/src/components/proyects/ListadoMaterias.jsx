@@ -1,11 +1,11 @@
 import React, { useContext, useEffect } from "react";
 import Materia from "./Materia";
-import projectContext from "../../context/projects/projectContext";
+import materiaContext from "../../context/materia/materiaContext";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 const ListadoMaterias = () => {
   //extraigo los proyectos del state inicial
-  const proyectoContext = useContext(projectContext);
+  const proyectoContext = useContext(materiaContext);
   const { materias, obtenerMaterias } = proyectoContext;
 
   //consulto si tiene contenido

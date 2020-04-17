@@ -4,13 +4,15 @@ import Login from "./components/auth/Login";
 import NuevaCuenta from "./components/auth/NuevaCuenta";
 import PanelAula from "./components/proyects/PanelAula";
 
-import ProjectState from "./context/projects/projectState";
+import MateriaState from "./context/materia/materiaState";
 import TaskState from "./context/tasks/taskState";
+import AlertaState from "./context/alerta/alertaState";
 
 function App() {
   return (
-    <ProjectState>
+    <MateriaState>
       <TaskState>
+        <AlertaState>
       <Router>
         <Switch>
           <Route exact path="/" component={Login} />
@@ -18,8 +20,9 @@ function App() {
           <Route exact path="/proyectos" component={PanelAula} />
         </Switch>
       </Router>
+      </AlertaState>
       </TaskState>
-    </ProjectState>
+    </MateriaState>
   );
 }
 

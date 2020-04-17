@@ -1,10 +1,10 @@
 import React, { useContext , useState , useEffect} from 'react';
-import projectContext from '../../context/projects/projectContext';
+import materiaContext from '../../context/materia/materiaContext';
 import taskContext from '../../context/tasks/taskContext';
 
 const FormularioTarea = () => {
 
-    const proyectoContext = useContext(projectContext);
+    const proyectoContext = useContext(materiaContext);
     const{ materiaActual } = proyectoContext;
 
     const tareasContext = useContext(taskContext);

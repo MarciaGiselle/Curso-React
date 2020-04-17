@@ -3,11 +3,11 @@ import Sidebar from "../layout/Sidebar";
 import BarraSuperior from "../layout/BarraSuperior";
 import FormularioTarea from "../tasks/FormularioTarea";
 import ListadoTareas from "../tasks/ListadoTareas";
-import projectContext from '../../context/projects/projectContext';
+import materiaContext from '../../context/materia/materiaContext';
 
 
 const PanelAula = () => {
-  const proyectoContext = useContext(projectContext);
+  const proyectoContext = useContext(materiaContext);
   const{ materiaActual } = proyectoContext;
   
   return (
