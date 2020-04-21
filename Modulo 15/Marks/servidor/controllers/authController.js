@@ -5,7 +5,6 @@ const jwt = require ('jsonwebtoken');
 
 
 exports.autenticar = async (req, res) => {
-
     const errores = validationResult(req);
     if(! errores.isEmpty()){
         return res.status(400).json({errores: errores.array()})
@@ -18,14 +17,14 @@ exports.autenticar = async (req, res) => {
         let usuario = await Usuario.findOne({ email });
 
         if(!usuario){
-            return res.status(400).json({ msg: 'El email ingresado no es correcto'})
+            return res.status(400).json({ msg: 'Ingrese un email válido'})
         }
 
         //ver si el pass es correcto
         const isPassCorrecto = await bcryptjs.compare(password, usuario.password);
 
         if(!isPassCorrecto){
-            return res.status(400).json({ msg: 'La contraseña es incorrecta'})
+            return res.status(400).json({ msg: 'La contraseña no es correcta'})
         }
 
         //si todo es correcto
@@ -35,18 +34,29 @@ exports.autenticar = async (req, res) => {
                 id: usuario.id
             }
         };
-
         jwt.sign(payload, process.env.SECRETA, {
-            expiresIn: 360000 //valido por una hora
+            expiresIn: 3600 //valido por una hora
         },(error, token) =>{
             if(error) throw error;
-
             //confirmacion
             res.json({token});
         })
 
 
     } catch (error) {
+        console.log(error);
+        res.status(500).json({msg:'Hubo un error'})
+
+    }
+}
+
+exports.obtenerUsuario = async (req, res) => {
+    try {
+        const usuario = await Usuario.findById(req.usuario.id).select('-password');
+        res.json({usuario});
         
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({msg:'Hubo un error'})
     }
 }

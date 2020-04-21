@@ -1,4 +1,4 @@
-import { FORMULARIO_MATERIA, OBTENER_MATERIAS, AGREGAR_MATERIA, VALIDAR_FORMULARIO, MATERIA_ACTUAL, ELIMINAR_MATERIA } from '../../types';
+import { FORMULARIO_MATERIA, OBTENER_MATERIAS, AGREGAR_MATERIA, VALIDAR_FORMULARIO, MATERIA_ACTUAL, ELIMINAR_MATERIA, ERROR_MATERIA } from '../../types';
 
 export default (state, action) => {
     switch(action.type) {
@@ -29,15 +29,19 @@ export default (state, action) => {
         case MATERIA_ACTUAL:
             return {
                 ...state,
-                materiaActual: ([...state.materias].filter(materia => materia.id === action.payload))[0]
+                materiaActual: ([...state.materias].filter(materia => materia._id === action.payload))[0]
             }     
         case ELIMINAR_MATERIA:
             return {
                 ...state,
-                materias: [...state.materias].filter(materia => materia.id !== action.payload),
+                materias: [...state.materias].filter(materia => materia._id !== action.payload),
                 materiaActual: null
             }     
-
+        case ERROR_MATERIA:
+            return {
+                ...state,
+                mensaje: action.payload
+            }
         default:
             return state;
     }

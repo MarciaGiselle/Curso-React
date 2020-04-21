@@ -1,7 +1,8 @@
 import React, { useReducer,  createRef } from 'react';
-import { v4 as uuid } from 'uuid';
 import taskContext from './taskContext';
 import taskReducer from './taskReducer';
+import clienteAxios from '../../config/axios';
+
 import { SELECCIONAR_TAREAS,
         AGREGAR_TAREA, 
         VALIDAR_TAREA, 
@@ -14,15 +15,7 @@ import { SELECCIONAR_TAREAS,
 const TaskState = props => {
 
     const inicialState = {
-        tareas: [ 
-             {id: 1, nombre:'Agregar carrito', estado:true, idMateria: 1 , textInput : createRef()},
-             {id: 2, nombre:'Login cliente', estado:false, idMateria: 1 ,  textInput : createRef()},
-             {id: 3, nombre:'Acomodar cards', estado:false, idMateria: 2},
-             {id: 4, nombre:'Colores', estado:true, idMateria: 2},
-             {id: 5, nombre:'Tipografias', estado:false, idMateria: 3},
-             {id: 6, nombre:'Calculos', estado:false, idMateria: 3} 
-            ],
-        tareasDeMateria: null,
+        tareasDeMateria: [],
         errorTarea: false,
         tareaAModificar: null     
 
@@ -31,20 +24,30 @@ const TaskState = props => {
     //dispatch
     const [state, dispatch] = useReducer(taskReducer, inicialState);
 
-    const obtenerTareasDeMateria = id =>{
-        dispatch({
-            type: SELECCIONAR_TAREAS,
-            payload: id 
-        })
+    const obtenerTareasDeMateria = async idMateria =>{
+        try {
+            const tareas = await clienteAxios.get('api/tarea/', {params: {idMateria}}) ;
+            dispatch({
+               type: SELECCIONAR_TAREAS,
+               payload: tareas.data
+           })
+        } catch (error) {
+            console.log(error);
+        }
+       
 
     }
 
-    const nuevaTarea = tarea => {
-        tarea.id = uuid(); 
+    const nuevaTarea = async tarea => {
+       try {
+        const nuevaTarea = await clienteAxios.post('/api/tarea/', tarea)    
         dispatch({
             type: AGREGAR_TAREA,
             payload: tarea
         })
+       } catch (error) {
+           console.log(error);
+       }
     }
 
     const validarTarea = () => {
@@ -53,11 +56,16 @@ const TaskState = props => {
         })
     }
     
-    const eliminarTarea = tarea => {
+    const eliminarTarea = async tarea => {
+       try {
+        await clienteAxios.delete(`api/tarea/${tarea}`)
         dispatch({
             type:ELIMINAR_TAREA,
             payload: tarea
         })
+       } catch (error) {
+           console.log(error);
+       }
     }
 
     const modificarTarea = tarea => {

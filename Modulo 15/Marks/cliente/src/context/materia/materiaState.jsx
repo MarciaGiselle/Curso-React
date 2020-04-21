@@ -1,29 +1,26 @@
 import React, { useReducer } from 'react';
-import { v4 as uuid } from 'uuid';
 import materiaContext from './materiaContext';
 import materiaReducer from './materiaReducer';
+import clienteAxios from '../../config/axios';
 import { 
     FORMULARIO_MATERIA,
     OBTENER_MATERIAS,
     AGREGAR_MATERIA,
     VALIDAR_FORMULARIO,
     MATERIA_ACTUAL,
-    ELIMINAR_MATERIA
+    ELIMINAR_MATERIA,
+    ERROR_MATERIA
  } from '../../types';
 
 const MateriaState = props => {
-
-    const materias = [
-        { id: 1, nombre: "Tienda Virtual" },
-        { id: 2, nombre: "Intranet" },
-        { id: 3, nombre: "Diseño de sitio web" }
-    ]
 
     const inicialState = {
         materias : [],
         formularioMateria : false,
         errorFormulario: false,
-        materiaActual: null
+        materiaActual: null,
+        mensaje: null
+
     }
 
     //Dispatch para ejecutar las acciones
@@ -37,20 +34,47 @@ const MateriaState = props => {
     }
 
     //Obtener los materias
-    const obtenerMaterias = () => {
+    const obtenerMaterias = async () => {
+       try {
+        const resultado = await clienteAxios.get('/api/materia');
+
         dispatch({
             type: OBTENER_MATERIAS,
-            payload: materias
+            payload: resultado.data
         })
+       } catch (error) {
+        const alerta = {
+            msg: 'Ha ocurrido un error inesperado',
+            categoria: 'alerta-error'
+        }
+        dispatch({
+            type: ERROR_MATERIA,
+            payload: alerta
+        })
+       }
     }
 
     //agregar nuevo materia
-    const agregarMaterias = nuevoMateria => {
-        nuevoMateria.id = uuid();
+    const agregarMaterias = async nuevaMateria => {
+       try {
+
+        const resultado = await clienteAxios.post('/api/materia', nuevaMateria);
+        //console.log(resultado);
         dispatch({
             type: AGREGAR_MATERIA,
-            payload: nuevoMateria
+            payload: resultado.data
         })
+       } catch (error) {
+        const alerta = {
+            msg: 'Ha ocurrido un error inesperado',
+            categoria: 'alerta-error'
+        }
+        dispatch({
+            type: ERROR_MATERIA,
+            payload: alerta
+        })
+
+       }
     }
 
     const mostrarError = () => {
@@ -66,11 +90,24 @@ const MateriaState = props => {
         })
     }
 
-    const eliminarMateria = id => {
-        dispatch({
-            type: ELIMINAR_MATERIA,
-            payload: id
-        })
+    const eliminarMateria = async  id => {
+
+        try {
+            await clienteAxios.delete(`/api/materia/${id}`);
+            dispatch({
+                type: ELIMINAR_MATERIA,
+                payload: id
+            })
+        } catch (error) {
+            const alerta = {
+                msg: 'Ha ocurrido un error inesperado',
+                categoria: 'alerta-error'
+            }
+            dispatch({
+                type: ERROR_MATERIA,
+                payload: alerta
+            })
+         }
     }
 
     return(
@@ -80,6 +117,7 @@ const MateriaState = props => {
                 materias: state.materias,
                 errorFormulario : state.errorFormulario,
                 materiaActual : state.materiaActual,
+                mensaje : state.mensaje,
                 mostrarError,
                 mostrarFormulario,
                 obtenerMaterias,

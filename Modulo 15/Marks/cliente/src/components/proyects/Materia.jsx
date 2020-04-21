@@ -21,7 +21,7 @@ const Materia = ({materia}) => {
             <button
                 type='button'
                 className='btn btn-blank'
-                onClick = {() => obtenerMateria(materia.id) }
+                onClick = {() => obtenerMateria(materia._id) }
             >
                 {materia.nombre}
             </button>

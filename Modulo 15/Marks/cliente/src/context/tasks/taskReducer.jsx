@@ -6,12 +6,12 @@ export default (state, action) => {
         case SELECCIONAR_TAREAS:
             return {
                 ...state,
-                tareasDeMateria: state.tareas.filter(tarea => tarea.idMateria === action.payload)
+                tareasDeMateria:  action.payload
             }
         case AGREGAR_TAREA:
             return {
                 ...state,
-                tareas: [ action.payload, ...state.tareas ],
+                tareasDeMateria: [ action.payload, ...state.tareasDeMateria ],
                 errorTarea: false
 
             }  
@@ -23,13 +23,13 @@ export default (state, action) => {
         case ELIMINAR_TAREA:
             return{
                 ...state,
-                tareas: state.tareas.filter(tarea => tarea.id !== action.payload)
+                tareasDeMateria: state.tareasDeMateria.filter(tarea => tarea._id !== action.payload)
             }      
         case ESTADO_TAREA:
         case MODIFICAR_TAREA:
             return{
                 ...state,
-                tareas: state.tareas.map(tarea => tarea.id === action.payload.id ?
+                tareasDeMateria: state.tareasDeMateria.map(tarea => tarea.id === action.payload.id ?
                     action.payload : tarea), 
                 tareaAModificar: null 
             }

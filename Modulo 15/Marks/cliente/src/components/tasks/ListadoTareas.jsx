@@ -12,23 +12,21 @@ const ListadoTareas = () => {
     const tareasContext = useContext(taskContext);
     const{ tareasDeMateria } = tareasContext;
     
-  
-    const listadoTareas = tareasDeMateria;
 
     return (  
         <Fragment>
             <h2>Materia {materiaActual.nombre}</h2>
 
             <ul className='listado-tareas'>
-                {listadoTareas.length === 0 ?
+                {tareasDeMateria.length === 0 ?
                     (<li className='tarea'>
                         <p>No hay tareas</p>
                     </li>)
                 :
                     (<TransitionGroup >
-                        {listadoTareas.map(tarea=>(
+                        {tareasDeMateria.map(tarea=>(
                             <CSSTransition
-                                key={tarea.id}
+                                key={tarea._id}
                                 timeout={300}
                                 classNames='tarea'
                                 >
@@ -45,7 +43,7 @@ const ListadoTareas = () => {
             <button
                 type='button'
                 className='btn btn-eliminar'
-                onClick={ () => eliminarMateria(materiaActual.id)}
+                onClick={ () => eliminarMateria(materiaActual._id)}
             >
                 Eliminar Materia &times;
             </button>

@@ -7,7 +7,7 @@ const Tarea = ({tarea}) => {
     const{ eliminarTarea, obtenerTareasDeMateria, cambiarEstado, setTareaAModificar } = tareasContext;
 
     const eliminar = () => {
-        eliminarTarea(tarea.id);
+        eliminarTarea(tarea._id);
         obtenerTareasDeMateria(tarea.idMateria)
     }
 

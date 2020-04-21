@@ -1,9 +1,23 @@
-import React, {useState} from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import { Link } from 'react-router-dom';
+import alertaContext from '../../context/alerta/alertaContext';
+import authContext from '../../context/auth/authContext';
 
-const Login = () => {
+const Login = (props) => {
 
-  const [error, setError] = useState(false);
+  const {alerta, mostrarAlerta} = useContext(alertaContext);
+  const { autenticado, mensaje, iniciarSesion } = useContext(authContext);
+
+  useEffect(() => {
+     if(autenticado){
+      props.history.push('/materias');
+    }
+
+    if(mensaje){
+      mostrarAlerta(mensaje.msg, mensaje.categoria);
+    }
+  }, [mensaje, autenticado, props.history]);
+
   const [usuario, setUsuario] = useState({
     email:'',
     password:''
@@ -23,18 +37,19 @@ const Login = () => {
 
     //validar campos
     if(email.trim() === '' || password.trim() === ''){
-      setError(true);
+      mostrarAlerta("Todos los campos son obligatorios", "alerta-error")
       return;
     }
 
 
     //longitud de pass
     if(password.trim().length < 6){
-      setError(true);
+      mostrarAlerta("La password debe tener mínimo 6 caracteres", "alerta-error");
       return;
     }
 
-    setError(false);
+    iniciarSesion({email, password});
+
   }
 
     return (
@@ -42,7 +57,7 @@ const Login = () => {
           <div className='contenedor-form sombra-dark'>
             <h1>MARTE</h1>
             <h2>Iniciar Sesión</h2>
-            {error ? <h1 className='error'>Error</h1>: null}
+            {alerta ? (<h1 className={`alerta ${alerta.categoria}`}> {alerta.msg}</h1>): null}
             <form onSubmit={onSubmitLogin}> 
               <div className='campo-form'>
                 <label htmlFor="email">Email</label>

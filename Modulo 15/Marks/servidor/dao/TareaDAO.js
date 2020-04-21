@@ -5,7 +5,7 @@ exports.guardar = (tarea) => {
 }
 
 exports.obtenerTodas = (idMateria) => {
-    return Tarea.find({idMateria});
+    return Tarea.find({idMateria}).sort({fechaCreacion: -1});
 }
 
 exports.getbyId = id => {

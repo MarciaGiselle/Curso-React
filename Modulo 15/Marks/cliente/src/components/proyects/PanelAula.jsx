@@ -7,8 +7,7 @@ import materiaContext from '../../context/materia/materiaContext';
 
 
 const PanelAula = () => {
-  const proyectoContext = useContext(materiaContext);
-  const{ materiaActual } = proyectoContext;
+  const { materiaActual } = useContext(materiaContext);
   
   return (
     <div className="contenedor-app">

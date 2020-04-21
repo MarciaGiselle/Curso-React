@@ -46,9 +46,7 @@ const FormularioTarea = () => {
 
         if(!tareaAModificar){
             //crear
-            //agregar al state
-            tarea.idMateria = materiaActual.id;
-            tarea.estado = false;
+            tarea.idMateria = materiaActual._id;
             nuevaTarea(tarea);
         }else{
             //modificar
@@ -56,7 +54,7 @@ const FormularioTarea = () => {
         }
 
         //recarga el array de tareas
-        obtenerTareasDeMateria(materiaActual.id);
+        obtenerTareasDeMateria(materiaActual._id);
 
         //limpiar el form
         setTarea({

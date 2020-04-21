@@ -34,7 +34,7 @@ exports.crearTarea = async (req, res) => {
 
 exports.obtenerTareas = async (req, res) => {
   try {
-    const {idMateria} = req.body;     
+    const {idMateria} = req.query;     
     const materia = await materiaServicio.getById(idMateria);
 
     if (materia) {

@@ -1,10 +1,23 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import alertaContext from '../../context/alerta/alertaContext';
+import authContext from '../../context/auth/authContext';
 
-const NuevaCuenta = () => {
+const NuevaCuenta = (props) => {
 
   const {alerta, mostrarAlerta} = useContext(alertaContext);
+  const {registrarUsuario, mensaje, autenticado} = useContext(authContext);
+
+  useEffect(()=>{
+    if(autenticado){
+      props.history.push('/materias');
+    }
+
+    if(mensaje){
+      mostrarAlerta(mensaje.msg, mensaje.categoria);
+    }
+
+  }, [mensaje, autenticado, props.history]);
 
   const [usuario, setUsuario] = useState({
     nombre:'',
@@ -34,17 +47,20 @@ const NuevaCuenta = () => {
     //longitud de pass
     if(password.trim().length < 6){
       mostrarAlerta("La password debe tener mínimo 6 caracteres", "alerta-error");
-
       return;
     }
     //2 pass iguales
     if(password.trim() !== passwordDos.trim()){
       mostrarAlerta("Las passwords deben ser iguales", "alerta-error");
-
       return;
     }
 
     // action
+    registrarUsuario({
+      nombre,
+      email, 
+      password,
+    })
 
   }
 
