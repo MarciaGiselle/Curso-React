@@ -1,4 +1,4 @@
-import React, { useReducer,  createRef } from 'react';
+import React, { useReducer } from 'react';
 import taskContext from './taskContext';
 import taskReducer from './taskReducer';
 import clienteAxios from '../../config/axios';
@@ -8,7 +8,6 @@ import { SELECCIONAR_TAREAS,
         VALIDAR_TAREA, 
         ELIMINAR_TAREA,
         MODIFICAR_TAREA,
-        ESTADO_TAREA,
         TAREA_A_MODIFICAR
     } from '../../types';
 
@@ -43,7 +42,7 @@ const TaskState = props => {
         const nuevaTarea = await clienteAxios.post('/api/tarea/', tarea)    
         dispatch({
             type: AGREGAR_TAREA,
-            payload: tarea
+            payload: nuevaTarea
         })
        } catch (error) {
            console.log(error);
@@ -68,19 +67,19 @@ const TaskState = props => {
        }
     }
 
-    const modificarTarea = tarea => {
-        dispatch({
-            type: MODIFICAR_TAREA,
-            payload: tarea 
+    const modificarTarea = async tarea => {
+       try {
+           const respuesta = await clienteAxios.put(`/api/tarea/${tarea._id}`, tarea);
+           dispatch({
+            type:MODIFICAR_TAREA,
+            payload: respuesta.data
         })
+       } catch (error) {
+           console.log(error);
+       }
     }
 
-    const cambiarEstado = tarea => {
-        dispatch({
-            type: ESTADO_TAREA,
-            payload: tarea
-        })
-    }
+    
 
     const setTareaAModificar = tarea => {
         dispatch({
@@ -100,7 +99,6 @@ const TaskState = props => {
                 validarTarea,
                 eliminarTarea,
                 modificarTarea,
-                cambiarEstado,
                 setTareaAModificar
             }}
         

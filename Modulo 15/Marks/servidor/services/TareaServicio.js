@@ -15,13 +15,8 @@ exports.obtenerTodas = (idMateria) => {
 
 exports.llenar = (body) =>{
     const nuevaTarea = {};
-
-    if(body.nombre) {
         nuevaTarea.nombre = body.nombre;
-    }
-    if(body.estado) {
         nuevaTarea.estado = body.estado
-    }
     return nuevaTarea;
 }
 

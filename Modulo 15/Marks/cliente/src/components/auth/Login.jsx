@@ -16,6 +16,7 @@ const Login = (props) => {
     if(mensaje){
       mostrarAlerta(mensaje.msg, mensaje.categoria);
     }
+    // eslint-disable-next-line
   }, [mensaje, autenticado, props.history]);
 
   const [usuario, setUsuario] = useState({
@@ -78,6 +79,7 @@ const Login = (props) => {
                   id='password'
                   name='password'
                   placeholder='Tu password'
+                  autoComplete='cc-number'
                   value={password}
                   onChange={onChangeLogin}
                 />

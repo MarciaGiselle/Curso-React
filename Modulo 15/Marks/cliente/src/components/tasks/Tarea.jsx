@@ -4,7 +4,7 @@ import taskContext from '../../context/tasks/taskContext';
 const Tarea = ({tarea}) => {
 
     const tareasContext = useContext(taskContext);
-    const{ eliminarTarea, obtenerTareasDeMateria, cambiarEstado, setTareaAModificar } = tareasContext;
+    const{ eliminarTarea, obtenerTareasDeMateria, modificarTarea, setTareaAModificar } = tareasContext;
 
     const eliminar = () => {
         eliminarTarea(tarea._id);
@@ -17,7 +17,7 @@ const Tarea = ({tarea}) => {
         }else{
             tarea.estado = true;
         }
-        cambiarEstado(tarea);
+        modificarTarea(tarea);
     }
 
     const modificarTareaSeleccionada = tarea => {

@@ -7,6 +7,7 @@ const BarraSuperior = () => {
 
     useEffect(() => {
        obtenerUsuarioAutenticado()
+       // eslint-disable-next-line
     }, [])
     return (  
         <div className='app-header'>
