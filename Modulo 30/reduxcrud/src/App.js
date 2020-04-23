@@ -6,9 +6,14 @@ import EditarLibro from './components/EditarLibro';
 
 import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
+//Redux
+import { Provider } from 'react-redux';
+import store from './store';
+
 function App() {
   return (
     <Router>
+      <Provider store={store}>
       <Header/>
       <div className='container'>
           <Switch>
@@ -17,8 +22,8 @@ function App() {
               <Route exact path='/libros/editar/:id' component = {EditarLibro}></Route>
           </Switch>
       </div>
+      </Provider>
     </Router>
-    
   );
 }
 
