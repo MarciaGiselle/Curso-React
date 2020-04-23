@@ -1,19 +1,84 @@
 {
-    "libros": [
-      {
-        "titulo": "Alicia en el pais de las maravillas",
-        "precio": "500",
-        "id": 300
-      },
-      {
-        "titulo": "Game of Thrones",
-        "precio": 500,
-        "id": 2
-      },
-      {
-        "titulo": "1",
-        "precio": 2,
-        "id": 3
-      }
-    ]
-  }
+  "libros": [
+    {
+      "titulo": "Alicia en el pais de las maravillas",
+      "precio": "500",
+      "id": 1
+    },
+    {
+      "titulo": "Game of Thrones",
+      "precio": 500,
+      "id": 2
+    },
+    {
+      "titulo": "1",
+      "precio": 2,
+      "id": 3
+    },
+    {
+      "titulo": "Kit desayuno ",
+      "precio": "200",
+      "id": 4
+    },
+    {
+      "titulo": "Vinilos decorativos",
+      "precio": "250",
+      "id": 5
+    },
+    {
+      "titulo": "dsadas",
+      "precio": "250",
+      "id": 6
+    },
+    {
+      "titulo": "el principito",
+      "precio": "250",
+      "id": 7
+    },
+    {
+      "titulo": "Kit desayuno ",
+      "precio": "200",
+      "id": 8
+    },
+    {
+      "titulo": "Vinilos decorativos",
+      "precio": "250",
+      "id": 9
+    },
+    {
+      "titulo": "Vinilos decorativos",
+      "precio": "250",
+      "id": 10
+    },
+    {
+      "titulo": "das",
+      "precio": "200",
+      "id": 11
+    },
+    {
+      "titulo": "Kit desayuno ",
+      "precio": "200",
+      "id": 12
+    },
+    {
+      "titulo": "Kit desayuno ",
+      "precio": "250",
+      "id": 13
+    },
+    {
+      "titulo": "Vinilos decorativos",
+      "precio": "250",
+      "id": 14
+    },
+    {
+      "titulo": "Vinilos decorativos",
+      "precio": "250",
+      "id": 15
+    },
+    {
+      "titulo": "Vinilos decorativos",
+      "precio": "200",
+      "id": 16
+    }
+  ]
+}
