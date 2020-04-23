@@ -1,0 +1,19 @@
+{
+    "libros": [
+      {
+        "titulo": "Alicia en el pais de las maravillas",
+        "precio": "500",
+        "id": 300
+      },
+      {
+        "titulo": "Game of Thrones",
+        "precio": 500,
+        "id": 2
+      },
+      {
+        "titulo": "1",
+        "precio": 2,
+        "id": 3
+      }
+    ]
+  }
