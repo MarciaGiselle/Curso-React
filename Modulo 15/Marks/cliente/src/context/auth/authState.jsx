@@ -47,18 +47,29 @@ const AuthState = props => {
 
     const obtenerUsuarioAutenticado = async () => {
         const token = localStorage.getItem('token');
+        let config = {
+            headers: {
+              "Content-Type": "application/json",
+              'Access-Control-Allow-Origin': '*',
+              }
+            }
+            
         try {
             if(token){
                authToken(token);
             }
-            const respuesta = await clienteAxios.get('/api/auth');
-            
+            const respuesta = {
+                method: 'GET', 
+                url:  await clienteAxios.get('/api/auth', config),
+                headers: {autorizacion: localStorage.getItem('token'), accept: "Accept: application/json" }};
+
             dispatch({
                 type:OBTENER_USUARIO,
                 payload: respuesta.data.usuario
             })
             
         } catch (error) {
+            console.log(error);
             const alerta = {
                 msg: error.response.data.msg,
                 categoria: 'alerta-error'
@@ -72,9 +83,17 @@ const AuthState = props => {
 
     const iniciarSesion = async (datos) => {
         try {
+            let config = {
+                headers: {
+                  "Content-Type": "application/json",
+                  'Access-Control-Allow-Origin': '*',
+                  }
+                }
 
-            const respuesta = await clienteAxios.post('/api/auth', datos);
-           
+            const respuesta ={
+                method: 'POST',
+                url: await clienteAxios.post('/api/auth', datos, config)};
+
             dispatch({
                 type: LOGIN_EXITOSO,
                 payload: respuesta.data
@@ -83,6 +102,8 @@ const AuthState = props => {
             //Coloco en el state al usuario que inicia sesion
             obtenerUsuarioAutenticado();
         } catch (error) {
+            console.log(error);
+
             const alerta = {
                 msg: error.response.data.msg,
                 categoria: 'alerta-error'
