@@ -1,11 +1,11 @@
 import React, {useState} from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import {crearNuevoLibroAction} from '../actions/libroActions';
+import {crearNuevoLibroAction} from '../actions/nuevoLibroAction';
 
 const NuevoLibro = ({history}) => {
 
   const dispatch = useDispatch();
-  const loading = useSelector(state => state.libro.loading);
+  //const loading = useSelector(state => state.libro.loading);
   const error = useSelector(state => state.libro.error);
   
   const agregarLibro = libro => dispatch(crearNuevoLibroAction(libro));
