@@ -9,6 +9,7 @@ const Listado = () => {
     useEffect(() => {
         const cargarLibros = () => dispatch(getLibrosAction());
         cargarLibros();
+        //eslint-disable-next-line
     }, []);
     
     const libros = useSelector(state => state.libro.libros);

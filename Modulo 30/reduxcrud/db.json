@@ -1,24 +1,14 @@
 {
   "libros": [
     {
-      "titulo": "Escritorio nuevo desarmable",
-      "precio": "200",
-      "id": 1
-    },
-    {
-      "titulo": "Vinilos decorativos",
-      "precio": "250",
-      "id": 2
+      "id": 1,
+      "titulo": "NOMBRE editado",
+      "precio": "300"
     },
     {
       "titulo": "Vinilos decorativos",
       "precio": "200",
       "id": 3
-    },
-    {
-      "titulo": "Vinilos decorativos",
-      "precio": "200",
-      "id": 4
     }
   ]
 }

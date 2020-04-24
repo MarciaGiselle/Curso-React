@@ -1,12 +1,13 @@
 import React, {useState} from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import {crearNuevoLibroAction} from '../actions/nuevoLibroAction';
+import {mostrarAlerta, ocultarAlerta} from '../actions/alertaActions';
 
 const NuevoLibro = ({history}) => {
 
   const dispatch = useDispatch();
   //const loading = useSelector(state => state.libro.loading);
-  const error = useSelector(state => state.libro.error);
+  const alerta = useSelector(state => state.alerta.alerta);
   
   const agregarLibro = libro => dispatch(crearNuevoLibroAction(libro));
 
@@ -29,16 +30,21 @@ const NuevoLibro = ({history}) => {
 
     //validar
     if(titulo.trim() === '' || precio <= 0 ){
+      const alerta = {
+        msg: "Campos obligatorios",
+        class: "alert alert-danger text-center p-3"
+      } 
+      dispatch(mostrarAlerta(alerta));
       return;
     }
 
     //errores
-
+    dispatch(ocultarAlerta());
     //crearNuevo
     agregarLibro(libro);
     setTimeout( ()=>{
       history.push('/')    },
-      3000
+      2000
     )
   }
   return (
@@ -49,7 +55,7 @@ const NuevoLibro = ({history}) => {
             <h2 className="text-center mb-4 font-weight-bold">
               &#43; Nuevo Libro
             </h2>
-            {error ? <p className='alert alert-danger p-2 text-center m-2'>Ha ocurrido un error</p>: null}
+  {alerta ? <p className={alerta.class}>{alerta.msg}</p>: null}
             
             <form onSubmit={ submitNuevoLibro }>
               <div className="form-group">

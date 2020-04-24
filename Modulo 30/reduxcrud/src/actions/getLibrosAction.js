@@ -5,7 +5,6 @@ import {
 } from "../types";
 
 import clienteAxios from "../config/axios";
-import Swal from "sweetalert2";
 
 export function getLibrosAction() {
   return async (dispatch) => {

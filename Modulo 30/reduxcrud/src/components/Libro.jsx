@@ -1,16 +1,17 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import {  useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { eliminarLibroAction } from '../actions/eliminarLibroActions';
+import { obtenerLibroAEditar } from '../actions/editarLibroAction';
 import Swal from 'sweetalert2';
 
 const Libro = ({libro}) => {
 
     const dispatch = useDispatch();
-    const error = useSelector(state => state.libro.error);
+    const history = useHistory();
+   
     const obtenerLibro = id => {
-        
-        //consulta al usuario
+        //alert consulta al usuario
         Swal.fire({
             title: 'Estás seguro?',
             text: "Un libro que se elimina no se puede recuperar",
@@ -24,10 +25,13 @@ const Libro = ({libro}) => {
           }).then((result) => {
             if (result.value) {
                 dispatch(eliminarLibroAction(id));
-              
             }
           })
-        
+    }
+
+    const redireccionEdiccion = libro =>{
+        dispatch(obtenerLibroAEditar(libro));
+        history.push(`/libros/editar/${libro.id}`);
     }
 
     return (  
@@ -35,9 +39,11 @@ const Libro = ({libro}) => {
             <td className='font-weight-bold'>{libro.titulo}</td>
             <td>{libro.precio}</td>
             <td className='acciones d-inline-block'>
-                <Link to={`/libros/editar/${libro.id}`}
-                className='btn btn-primary mr-2'
-                >Editar</Link>
+                <button
+                    type= 'button'
+                    className='btn btn-primary mr-2'
+                    onClick= {() => redireccionEdiccion(libro)}
+                >Editar</button>
 
                 <button
                     type= 'button'
