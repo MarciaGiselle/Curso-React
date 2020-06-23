@@ -9,6 +9,11 @@
       "titulo": "Vinilos decorativos",
       "precio": "200",
       "id": 3
+    },
+    {
+      "titulo": "Vinilos decorativos",
+      "precio": "250",
+      "id": 4
     }
   ]
 }
